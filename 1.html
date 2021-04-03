@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        
+        while(true){
+            var num = prompt('请输入成绩?');
+            if(num >= 0 && num <= 100){
+                break;
+            }
+            alert('请输入有效数字!!');
+        }
+
+        if(num >100 || num < 0 || isNaN(num)){
+            alert('您输入的格式不正确')
+        }else{
+            if(num == 100){
+            alert('奖励一辆BMW')
+        } else if(num >= 80){
+            alert('奖励一台iphone15s')
+        } else if(num >= 60){
+            prompt('奖励参考书一本')
+        } else{
+            prompt('什么奖励也没有')
+        }
+        }
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
