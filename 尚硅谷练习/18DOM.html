@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #total{
+            position: relative;
+            width: 400px;
+            height: 540px;
+            margin-left: 380px;
+        }
+        
+        .clearfix::before,
+        .clearfix::after{
+            content: "";
+            display: table;
+            clear: both;
+        }
+
+        .inner{
+            border: 1px solid black;
+            padding: 20px;
+        }
+
+            
+        
+        ul li{
+            display: inline-block;
+            border: solid black 1px;
+            margin: 10px;
+            background-color: #bfa;
+            padding: 5px;
+            font-size: 16px;
+        }
+        ul{
+            list-style: none;
+        }
+
+        #btnlist{
+            position: absolute;
+            top: 0;
+            left: 800px;
+        }
+        #btnlist > div{
+            width: 240px;
+            height: 50px;
+            font-size: 19px;
+        }
+    </style>
+    <script>
+
+        function myClick(idStr , fun){
+            var bth = document.getElementById(idStr);
+            bth.onclick = fun;
+        }
+
+        window.onload = function(){
+            // 查找#bj节点
+            var bth01 = document.getElementById('bth01');
+            bth01.onclick = function(){
+                var bj = document.getElementById('bj');
+                alert(bj.innerHTML);
+            }
+            // 查找所有li节点
+            var bth02 = document.getElementById('bth02');
+            bth02.onclick = function(){
+                var lis = document.getElementsByTagName('li');
+                // alert(lis.length)返回类数组
+                for(var i = 0;i < lis.length;i++){
+                    alert(lis[i].innerHTML);
+                }
+            }
+            // 查找所有name=gender的所有节点 class要用className
+            var bth03 = document.getElementById('bth03');
+            bth03.onclick = function(){
+                var inputs = document.getElementsByName('gender');
+                // alert(inputs.length);返回类数组
+                for(var i = 0; i < inputs.length ;i++){
+                    alert(inputs[i].value)
+                }
+            }
+            // 查找#city下的所有li节点
+            var bth04 = document.getElementById('bth04');
+            bth04.onclick = function(){
+            var city = document.getElementById('city');
+            var lis = city.getElementsByTagName('li');
+            for(var i = 0; i < lis.length ; i++){
+                alert(lis[i].innerHTML)
+            }
+            }
+            // 返回#city的所有子节点
+            var bth05 = document.getElementById('bth05');
+            bth05.onclick = function(){
+                var city = document.getElementById('city');
+                // 获得元素节点 空白算文本节点
+                var con = city.childNodes;
+                // 获得子元素
+                var con2 = city.children;
+                alert(con.length)
+                alert(con2.length)
+            }
+            // 返回#phone的第一个子节点 
+            var bth06 = document.getElementById('bth06');
+            bth06.onclick = function(){
+                var phone = document.getElementById('phone');
+                // 获取第一个节点(包括空白文本)
+                var fir = phone.firstChild;
+                // 获取第一个子元素
+                var fir1 = phone.firstElementChild;
+                alert(fir.innerHTML);
+                alert(fir1.innerHTML)
+            }
+            // 返回#bj的父节点
+            myClick('bth07',function(){
+                var bj = document.getElementById('bj');
+                var pn = bj.parentNode;
+                alert(pn.innerHTML);
+                // 获取元素内部的文本内容
+                alert(pn.innerText)
+            })
+            // 返回#android的前一个兄弟节点
+            myClick('bth08',function(){
+                var and = document.getElementById('android');
+                // 获取前一个兄弟节点,也可能是空白文本
+                var ps = and.previousSibling;
+                // 获取前一个兄弟元素
+                var pe = and.previousElementSibling;
+                // 获取后一个兄弟节点
+                var pp = and.nextSibling;
+                alert(ps.innerHTML);
+                alert(pe.innerHTML);
+                alert(pp.innerHTML);
+            })
+            // 读取#username的value属性值
+            myClick('bth09',function(){
+                var use = document.getElementById('username');
+                alert(use.value); 
+            });
+            // 设置#username的value属性值
+            myClick('bth10',function(){
+                var use = document.getElementById('username');
+                use.value = '今天天气好!'
+            });
+            // 返回#bj的文本值
+            myClick('bth11',function(){
+                var bj = document.getElementById('bj');
+                // alert(bj.innerHTML);
+                // alert(bj.innerText);
+
+                // 获取bj中的文本节点
+                // var fc = bj.firstChild;
+                // alert(fc.nodeValue)
+                alert(bj.firstChild.nodeValue);
+            })
+        }
+         
+           
+    </script>
+</head>
+<body>
+    <div id="total">
+        <div class="inner">
+            <p>
+                你喜欢哪个城市?
+            </p>
+            <ul id="city">
+                <li id="bj">北京</li>
+                <li>上海</li>
+                <li>东京</li>
+                <li>首尔</li>
+            </ul>
+
+            <br>
+            <br>
+
+            <p>
+                你喜欢哪款单机游戏?
+            </p>
+
+            <ul id="game">
+                <li id="rl">红警</li>
+                <li>实况</li>
+                <li>极品飞车</li>
+                <li>魔兽</li>
+            </ul>
+
+            <br>
+            <br>
+
+            <p>
+                你的手机操作系统是?
+            </p>
+
+            <ul id="phone">
+                <li>IOS</li>
+            </ul>
+            <ul id="android">
+                <li>Android</li>
+            </ul>
+            <ul>
+                <li>Windows Phone</li>
+            </ul>
+        </div>
+
+        <div class="inner">
+            gender:
+            <input type="radio" name="gender" value="male"/>
+            Male
+            <input type="radio" name='gender' value='female'/>
+            Female
+            <br>
+            <br>
+            name:
+            <input type="text" name='name' id="username" value="abcde"/>
+        </div>
+    </div>
+    <div id="btnlist">
+        <div><button id="bth01">查找#bj节点</button></div>
+        <div><button id="bth02">查找所有li节点</button></div>
+        <div><button id="bth03">查找所有name=gender的所有节点</button></div>
+        <div><button id="bth04">查找#city下的所有li节点</button></div>
+        <div><button id="bth05">返回#city的所有子节点</button></div>
+        <div><button id="bth06">返回#phone的第一个子节点</button></div>
+        <div><button id="bth07">返回#bj的父节点</button></div>
+        <div><button id="bth08">返回#android的前一个兄弟节点</button></div>
+        <div><button id="bth09">读取#username的value属性值</button></div>
+        <div><button id="bth10">设置#username的value属性值</button></div>
+        <div><button id="bth11">返回#bj的文本值</button></div>
+    </div>
+</body>
+</html>
