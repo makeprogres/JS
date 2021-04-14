@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        window.onload = function(){
+            var but01 = document.getElementById('but01');
+            var ul = document.getElementById('ul');
+            but01.onclick = function(){
+                var li = document.createElement('li');
+                li.innerHTML = '<a href="javascript:;">新添加的li</a>';
+                ul.appendChild(li);
+            }
+            // var allA = document.getElementsByTagName('a');
+            // for(var i=0; i<allA.length ;i++){
+            //     allA[i].onclick = function(){
+            //         alert('我是a的单击响应函数')
+            //     }
+            // }
+            ul.onclick = function(event){
+                event = event || window.event;
+                if(event.target.className == 'link'){
+                alert('我是ul的单击响应函数')
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <button id="but01">添加超链接</button>
+    <ul id="ul">
+        <li><a href="javascript:;" class="link">超链接一</a></li>
+        <li><a href="javascript:;" class="link">超链接二</a></li>
+        <li><a href="javascript:;" class="link">超链接三</a></li>
+    </ul>
+</body>
+</html>

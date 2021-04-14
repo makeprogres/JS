@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #box1{
+            width: 200px;
+            height: 200px;
+            background-color: #bfa;
+
+        }
+        #span{
+            background-color: chocolate;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            span.onclick = function(event){
+                event = event || window.event;
+                alert('我是span');
+                event.cancelBubble = true;
+            }
+            box1.onclick = function(){
+                event = event || window.event;
+                alert('我是box1');
+                event.cancelBubble = true;
+            }
+            document.body.onclick = function(){
+                alert('我是body')
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="box1">我是box1
+        <span id="span">我是span</span>
+    </div>
+</body>
+</html>
