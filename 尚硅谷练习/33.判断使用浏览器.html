@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        var ua = navigator.userAgent;
+        console.log(ua);
+        if(/firefox/i.test(ua)){
+            alert('火狐');
+        } else if(/chrome/i.test(ua)){
+            alert('Chrome');
+        } else if(/msie/i.test(ua)){
+            alert('IE');
+        } else if('ActiveXOBject' in window){
+            alert('IE11')
+        }
+    </script>
+</head>
+<body>
+    
+</body>
+</html>
