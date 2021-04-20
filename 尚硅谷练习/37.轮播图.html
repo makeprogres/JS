@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+
+        #outer{
+            width: 520px;
+            height: 333px;
+            background-color: #bfa;
+            margin: 50px auto;
+            padding: 10px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #allImg{
+            /* width: 2600px; */
+            position: absolute;
+            left: -520px;
+            
+        }
+        #allImg li{
+            list-style: none;
+            float: left;
+            margin:0 10px;
+            
+        }
+
+        #allImg li img{
+            width: 500px;
+            height: 333px;
+        }
+
+        #navDiv{
+            position: absolute;
+            bottom: 10px;
+            /* left: 175px; */
+        }
+
+        #navDiv a{
+            width: 15px;
+            height: 15px;
+            background-color: red;
+            float: left;
+            margin: 0 5px;
+            opacity: 0.5;
+            filter: alpha(opacity=50);
+        }
+
+        #navDiv a:hover{
+            background-color: black;
+        }
+    </style>
+    <script>
+        window.onload = function(){
+            var allImg = document.getElementById('allImg');
+            var imgArr = document.getElementsByTagName('img');
+            allImg.style.width = 520*imgArr.length+'px';
+            var navDiv = document.getElementById('navDiv');
+            var outer = document.getElementById('outer');
+            navDiv.style.left = (outer.offsetWidth - navDiv.offsetWidth)/2 + 'px';
+            var index = 0;
+            var allA = document.getElementsByTagName('a');
+            allA[index].style.backgroundColor = 'black';
+            for(var i = 0 ;i < allA.length; i++){
+                allA[i].name = i;
+                allA[i].onclick = function(){
+                    index = this.name;
+                    // allImg.style.left = -520*index + 'px';
+                    steA();
+                    move(allImg,'left',-520*index,20,function(){
+
+                    });
+                }
+                
+            }
+            function steA(){
+                for(var i=0; i<allA.length ; i++){
+                    allA[i].style.backgroundColor = '';
+                }
+                allA[index].style.backgroundColor = 'black'
+            }
+            function move(obj,attr,target,speed,callback){
+                    clearInterval(obj.timer);
+                    var current = parseInt(getStyle(obj,attr));
+                    if(current > target){
+                        speed = -speed;
+                    }
+                    obj.timer = setInterval(function(){                  
+                        var oldValue = parseInt(getStyle(obj,attr));
+                        var newValue = oldValue + speed;
+                        if(speed < 0 && newValue < target || speed > 0 && newValue > target ){
+                            newValue = target;
+                        }
+                        obj.style[attr] = newValue + 'px';
+                        if( newValue === target){
+                                clearInterval(obj.timer);
+                                callback && callback();
+                        }
+                },30);
+            }
+            function getStyle(obj,name){
+                if(window.getComputedStyle){
+                    return getComputedStyle(obj,name)[name];
+                } else{
+                    return obj.currentStyle[name];
+                }
+            }
+        }
+    </script>
+</head>
+<body>
+    <div id="outer">
+        <ul id="allImg">
+            <li><img src="./img/1.jpg" alt=""></li>
+            <li><img src="./img/2.jpg" alt=""></li>
+            <li><img src="./img/3.jpg" alt=""></li>
+            <li><img src="./img/4.jpg" alt=""></li>
+            <li><img src="./img/5.jpg" alt=""></li>
+        </ul>
+        <div id="navDiv">
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+            <a href="javascript:;"></a>
+        </div>
+    </div>
+</body>
+</html>
