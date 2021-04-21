@@ -24,7 +24,6 @@
         #allImg{
             /* width: 2600px; */
             position: absolute;
-            left: -520px;
             
         }
         #allImg li{
@@ -73,21 +72,44 @@
             for(var i = 0 ;i < allA.length; i++){
                 allA[i].name = i;
                 allA[i].onclick = function(){
+                    clearInterval(timer);
                     index = this.name;
                     // allImg.style.left = -520*index + 'px';
                     steA();
                     move(allImg,'left',-520*index,20,function(){
-
+                        autoChange();
                     });
+                    
                 }
                 
             }
+
+            autoChange();
+
             function steA(){
+                if(index >= imgArr.length -1){
+                    index = 0;
+                    allImg.style.left = 0;
+                }
                 for(var i=0; i<allA.length ; i++){
                     allA[i].style.backgroundColor = '';
                 }
                 allA[index].style.backgroundColor = 'black'
             }
+
+            var timer;
+
+            function autoChange(){
+                timer =  setInterval(function(){
+                    index++;
+                    index %= imgArr.length
+                    move(allImg,'left',-520*index,20,function(){
+                        steA();
+                    })
+                    
+                },3000)
+            }
+
             function move(obj,attr,target,speed,callback){
                     clearInterval(obj.timer);
                     var current = parseInt(getStyle(obj,attr));
@@ -125,6 +147,7 @@
             <li><img src="./img/3.jpg" alt=""></li>
             <li><img src="./img/4.jpg" alt=""></li>
             <li><img src="./img/5.jpg" alt=""></li>
+            <li><img src="./img/1.jpg" alt=""></li>
         </ul>
         <div id="navDiv">
             <a href="javascript:;"></a>
